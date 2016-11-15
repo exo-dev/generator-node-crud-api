@@ -27,7 +27,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: ./Dockerfile-dev
+      dockerfile: ./Dockerfile
     restart: always
     ports:
       - "3000:3000"

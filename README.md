@@ -11,14 +11,14 @@
 		- [Create the project](#create-the-project)
 		- [Create an endpoint](#create-an-endpoint)
 		- [Run the server](#run-the-server)
-	- [Authentication](#authentitcation)
+	- [Authentication](#authentication)
     - [Run the application with kong](#run-the-application-with-kong)
         - [Run the application locally](#run-the-application-locally)
         - [Kong administration](#kong-administration)
         - [Issuing a jwt](#issuing-a-jwt)
 	- [Internal scripts](#internal-scripts)
 		- [Domain APIs](#domain-apis)
-		- [APIs with models](#api-with-models)
+		- [APIs with models](#apis-with-models)
 
 <!-- /TOC -->
 

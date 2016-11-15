@@ -96,7 +96,6 @@ awesome-api
  |- package.json
  |- README.md -> Please write a nice one :)
  |- Dockerfile -> Dockerfile used by jenkins
- |- Dockerfile-dev -> Dockerfile for developer use
  |- docker-compose.yml -> It will contain api, kong, kong-database, kong-dashboard and mongo as services
  |- Dockerfile
  |- Gruntfile.js
@@ -184,7 +183,6 @@ awesome-api
  |- package.json
  |- README.md -> Please write a nice one :)
  |- Dockerfile -> Dockerfile used by jenkins
- |- Dockerfile-dev -> Dockerfile for developer use
  |- docker-compose.yml -> It will contain api, kong, kong-database and kong-dashboard as services
  |- Gruntfile.js
  |- unit.sh -> Commands for jenkins

@@ -1,10 +1,22 @@
 {
   "name": "generator-node-crud-api",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "https://gitlab.com/exo-dev/generator-node-crud-api/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/exo-dev/generator-node-crud-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/exo-dev/generator-node-crud-api/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/exo-dev/generator-node-crud-api/blob/master/LICENSE-MIT"
+    }
+  ],
   "author": {
     "name": "Agustin Croce",
     "email": "agustinc@exo.com.ar",
@@ -17,7 +29,13 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "crud",
+    "api",
+    "swagger",
+    "kong",
+    "docker",
+    "jwt"
   ],
   "dependencies": {
     "chalk": "^1.0.0",

@@ -109,6 +109,8 @@ module.exports = yeoman.generators.Base.extend({
                 path.join(this.projectName, 'package.json'));
             this.template('_env',
                 path.join(this.projectName, '.env'));
+            this.template('_gitignore',
+                path.join(this.projectName, '.gitignore'));
             this.template('_mkdocs.yml',
                 path.join(this.projectName, 'mkdocs.yml'));
             this.template('_app.js',
@@ -125,14 +127,10 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath(path.join(this.projectName, '.tern-project')));
             this.fs.copy(this.templatePath(path.join('.dockerignore')),
                 this.destinationPath(path.join(this.projectName, '.dockerignore')));
-            this.fs.copy(this.templatePath(path.join('.gitignore')),
-                this.destinationPath(path.join(this.projectName, '.gitignore')));
             this.fs.copy(this.templatePath(path.join('build-baucis.js')),
                 this.destinationPath(path.join(this.projectName, 'build-baucis.js')));
             this.fs.copy(this.templatePath(path.join('Dockerfile')),
                 this.destinationPath(path.join(this.projectName, 'Dockerfile')));
-            this.fs.copy(this.templatePath(path.join('Dockerfile-dev')),
-                this.destinationPath(path.join(this.projectName, 'Dockerfile-dev')));
             this.fs.copy(this.templatePath(path.join('unit.sh')),
                 this.destinationPath(path.join(this.projectName, 'unit.sh')));
         },

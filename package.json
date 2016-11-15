@@ -1,7 +1,7 @@
 {
   "name": "generator-node-crud-api",
-  "version": "1.0.0",
-  "description": "Yeoman generator",
+  "version": "1.0.2",
+  "description": "Creates an api with swagger documentation plus kong as a proxy",
   "license": "MIT",
   "main": "app/index.js",
   "repository": {
@@ -25,9 +25,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "files": [
-    "generators"
-  ],
   "keywords": [
     "yeoman-generator",
     "crud",

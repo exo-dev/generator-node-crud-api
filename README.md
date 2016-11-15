@@ -238,7 +238,7 @@ All the `endpoints` will be on the URI `/api/*`. The generator brings an example
 
 The users of the aplication will be authenticated using [json web tokens](https://jwt.io/introduction/). Said jwt
 will be obtained using the authentication service (this service is on development right now, for testing purpose use the `npm script`
-[sign-jwt](#creacion-de-jwt-para-pruebas)).
+[sign-jwt](#issuing-a-jwt)).
 
 The jwt can be sent on the *Authorization Header* of the HTTP request with the next format:
 
@@ -265,7 +265,7 @@ variables add them to the compose file.
 ### Run the application locally
 
 If you want to run the api locally you have to comment using **#** on the service api. Verify that the mongo service exposes
-the port 27017. When adding la api to kongo you should use your public ip and not *localhost*.
+the port 27017. When adding the api to kong you should use your public ip and not *localhost*.
 
 ### Kong administration
 

@@ -1,0 +1,11 @@
+results/
+node_modules/
+bower_components/
+.tmp/
+*.sublime-*
+.idea/
+*.orig
+*~
+*.project
+*.xml
+.coverage

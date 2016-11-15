@@ -1,0 +1,54 @@
+version: '2'
+services:
+  kong:
+    image: kong
+    restart: always
+    environment:
+      - KONG_DATABASE=cassandra
+      - KONG_CASSANDRA_CONTACT_POINTS=kong-database
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "7946:7946"
+      - "7946:7946/udp"
+    depends_on:
+      - kong-database
+  kong-database:
+    restart: always
+    image: cassandra:2.2
+  kong-dashboard:
+    restart: always
+    image: pgbi/kong-dashboard
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kong
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-dev
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ~/.ssh:/root/.ssh
+    environment:
+      - <%= uppercaseName%>_SERVER_PORT=3000
+      - <%= uppercaseName%>_SERVER_HOST=0.0.0.0
+      - <%= uppercaseName%>_LOGGER_INFO_PATH='./info.log'
+      - <%= uppercaseName%>_LOGGER_INFO_LEVEL='info'
+      - <%= uppercaseName%>_LOGGER_FILE_MAX_SIZE=1000000
+      - <%= uppercaseName%>_LOGGER_MAX_FILES=50
+      - <%= uppercaseName%>_LOGGER_ERROR_PATH='./error.log'
+      - <%= uppercaseName%>_LOGGER_ERROR_LEVEL='error'
+      - <%= uppercaseName%>_IS_BEHIND_PROXY=false <% if (useModels) {%>
+      - <%= uppercaseName%>_MONGODB_HOST=mongo
+      - <%= uppercaseName%>_MONGODB_PORT=27017
+      - <%= uppercaseName%>_MONGODB_DB=default <% } %>
+      - NODE_ENV=develop<% if (useModels) {%>
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"<% } %>

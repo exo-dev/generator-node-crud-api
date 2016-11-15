@@ -6,7 +6,7 @@
 		- [Create the project](#create-the-project)
 		- [Create a model](#create-a-model)
 		- [Run the server](#run-the-server)
-		- [Creating not-CRUD endpoints](#crearting-not-crud-endpoints)
+		- [Creating not-CRUD endpoints](#creating-not-crud-endpoints)
 	- [Domain APIs (not-CRUD)](#domain-apis-not-crud)
 		- [Create the project](#create-the-project)
 		- [Create an endpoint](#create-an-endpoint)

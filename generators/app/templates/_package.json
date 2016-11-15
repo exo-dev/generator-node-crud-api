@@ -1,0 +1,59 @@
+{
+  "name": "<%= projectName %>",
+  "version": "0.0.1",
+  "devDependencies": {
+    "commander": "^2.9.0",
+    "inquirer": "^1.2.2",
+    "jsonfile": "^2.4.0",
+    "request": "^2.75.0",
+    "request-promise": "^4.1.1",
+    "jsonwebtoken": "^7.1.9",
+    "swagger-edit": "^1.0.0",
+    "grunt": "^1.0.1",
+    "grunt-convert": "^0.1.12",
+    "load-grunt-tasks": "^3.5.2",
+    "eslint-formatter-checkstyle-relative-paths": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-env": "^0.4.4",
+    "grunt-mocha-istanbul": "^5.0.1",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-eslint": "^18.1.0",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.3.4",
+    "proxyquire": "^1.7.3",
+    "should": "^9.0.0",
+    "sinon": "^1.17.2",
+    "xunit-file": "0.0.9"<% if (useModels) { %>,
+    "grunt-merge-json": "exo-dev/grunt-merge-json",
+    "grunt-baucis-swagger2": "^1.0.0"
+    <% } %>
+  },
+  "scripts": {
+    "test": "grunt mochaTest",
+    "jenkins": "grunt test",
+    "kong-register-api": "node ./bin/register-api",
+    "kong-register-consumer": "node ./bin/register-consumer",
+    "sign-jwt": "node ./bin/sign-jwt",
+    "watch": "grunt watch",
+    "edit-domain-swagger": "swagger-edit -s ./swagger/user.yaml",
+    "start": "grunt build && node app.js",
+    "generate-domain-swagger": "grunt convert"<% if (useModels) { %>,
+    "generate-crud-swagger": "grunt baucis-swagger2",
+    "merge-swagger": "grunt merge-json"
+    <% } %>
+  },
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-winston": "^2.0.0",
+    "helmet": "^2.3.0",
+    "winston": "^2.2.0",
+    "swagger-tools": "^0.10.1"<% if (useModels) { %>,
+    "mongoose": "^4.6.2",
+    "baucis": "^1.6.5"
+    <% } %>
+  }
+}

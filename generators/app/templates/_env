@@ -1,0 +1,13 @@
+<%= uppercaseName%>_SERVER_PORT=3000
+<%= uppercaseName%>_SERVER_HOST=localhost
+<%= uppercaseName%>_LOGGER_INFO_PATH='./info.log'
+<%= uppercaseName%>_LOGGER_INFO_LEVEL='info'
+<%= uppercaseName%>_LOGGER_FILE_MAX_SIZE=1000000
+<%= uppercaseName%>_LOGGER_MAX_FILES=50
+<%= uppercaseName%>_LOGGER_ERROR_PATH='./error.log'
+<%= uppercaseName%>_LOGGER_ERROR_LEVEL='error'
+<%= uppercaseName%>_IS_BEHIND_PROXY=false<% if (useModels) {%>
+<%= uppercaseName%>_MONGODB_HOST=localhost
+<%= uppercaseName%>_MONGODB_PORT=27017
+<%= uppercaseName%>_MONGODB_DB=default<% } %>
+NODE_ENV=develop

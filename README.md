@@ -2,23 +2,23 @@
 
 - [generator-node-crud-api](#generator-node-crud-api)
 	- [Instalation](#instalation)
-	- [APIs CRUD](#apis-crud)
-		- [Crear el proyecto](#crear-el-proyecto)
-		- [Crear modelos](#crear-modelos)
-		- [Ejecutar el servidor](#ejecutar-el-servidor)
-		- [Crear otros endpoints no-CRUD](#crear-otros-endpoints-no-crud)
-	- [APIs de dominio (sin-CRUD)](#apis-de-dominio-sin-crud)
-		- [Crear el proyecto](#crear-el-proyecto)
-		- [Crear un endpoint](#crear-un-endpoint)
-		- [Ejecutar el servidor](#ejecutar-el-servidor)
-	- [Autenticación](#autenticación)
-    - [Ejecutar la aplicación con kong](#ejecutar-la-aplicación-con-kong)
-        - [Levantar la api localmente](#levantar-la-api-localmente)
-        - [Administración del kong](#administración-del-kong)
-        - [Creación de jwt para pruebas](#creación-de-jwt-para-pruebas)
-	- [Cosas internas del generador](#cosas-internas-del-generador)
-		- [Sin modelos](#sin-modelos)
-		- [Con modelos](#con-modelos)
+	- [CRUD APIs](#crud-apis)
+		- [Create the project](#create-the-project)
+		- [Create a model](#create-a-model)
+		- [Run the server](#run-the-server)
+		- [Creating not-CRUD endpoints](#crearting-not-crud-endpoints)
+	- [Domain APIs (not-CRUD)](#domain-apis-not-crud)
+		- [Create the project](#create-the-project)
+		- [Create an endpoint](#create-an-endpoint)
+		- [Run the server](#run-the-server)
+	- [Authentication](#authentitcation)
+    - [Run the application with kong](#run-the-application-with-kong)
+        - [Run the application locally](#run-the-application-locally)
+        - [Kong administration](#kong-administration)
+        - [Issuing a jwt](#issuing-a-jwt)
+	- [Internal scripts](#internal-scripts)
+		- [Domain APIs](#domain-apis)
+		- [APIs with models](#api-with-models)
 
 <!-- /TOC -->
 
@@ -37,11 +37,11 @@ $ npm install -g yeoman
 $ npm install -g generator-node-crud-api
 ```
 
-## APIs CRUD
+## CRUD APIs
 
 For this APIs the generator will create the base structure of the project and make the `scaffolding` of the `mongoose` models, generating  the `REST endpoints` with the `CRUD` operations of this models.
 
-### Creating the project
+### Create the project
 
 The first step is to execute the `yeoman` generator to create the project. It will ask the name of the project, if our API will have `CRUD` models and if we want it to install the npm dependencies for us.
 
@@ -131,7 +131,7 @@ All the `CRUD endpoints` will be in the `/api/*` URI. For example the `vegetable
 [See create an endpoint](#create-an-endpoint)
 
 
-## Domain API (not-CRUD)
+## Domain APIs (not-CRUD)
 
 For these APIs the generator creates the basic structure of the project and gives some basic utilities to generate the `swagger` documentation.
 
@@ -360,12 +360,12 @@ In case of missing parameters they will be asked to the user.
 
 The project created came with some scripts that we hadn't talked about yet. This scripts are for debug utility.
 
-### Domain apis
+### Domain APIs
 
 - `generate-domain-swagger`: Generate a `json` file from the `user.yaml` edited with swagger-editor. If there are no models
 this file will be served as the `swagger.json` of the api.
 
-### Apis with models
+### APIs with models
 
 To the command described before we add:
 

@@ -31,8 +31,6 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    volumes:
-      - ~/.ssh:/root/.ssh
     environment:
       - <%= uppercaseName%>_SERVER_PORT=3000
       - <%= uppercaseName%>_SERVER_HOST=0.0.0.0

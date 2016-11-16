@@ -1,6 +1,6 @@
 {
   "name": "generator-node-crud-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Creates an api with swagger documentation plus kong as a proxy",
   "license": "MIT",
   "main": "app/index.js",

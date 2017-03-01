@@ -33,7 +33,7 @@ In this README we will call the first one "CRUD APIs" and the second one "Domain
 ## Instalation
 
 ```sh
-$ npm install -g yeoman
+$ npm install -g yo
 $ npm install -g generator-node-crud-api
 ```
 

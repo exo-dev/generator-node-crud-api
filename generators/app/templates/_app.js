@@ -73,7 +73,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
         }
         res.status(err.status || 500);
         let error = {
-            errorCode  : res.status,
+            errorCode  : res.statusCode,
             userMessage: err.message
         };
 

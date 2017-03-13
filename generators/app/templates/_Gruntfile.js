@@ -6,67 +6,72 @@ module.exports = function(grunt) {
 
         env: {
             dev: {
-                XUNIT_FILE: 'results/xunit.xml'
+                MOCHAWESOME_REPORTDIR:    'results/mochawesome-reports',
+                MOCHAWESOME_INLINEASSETS: true
             }
         },
 
         mochaTest: {
             test: {
                 options: {
-                    reporter         : 'spec',
-                    captureFile      : 'results/results.txt',
-                    quiet            : false,
+                    reporter:          'spec',
+                    quiet:             false,
                     clearRequireCache: false
                 },
-                src    : ['./tests/**/*.js']
+                src: ['./tests/**/*.js']
             }
         },
 
         eslint: {
             jenkins: {
                 options: {
-                    format    : './node_modules/eslint-formatter-checkstyle-relative-paths',
-                    outputFile: 'eslint.xml'
+                    format:     'html',
+                    outputFile: 'results/eslint/index.html'
                 },
-                src    : ['./lib/**/*.js']
+                src: ['./lib/**/*.js']
             },
-            dev    : {
+            dev: {
                 options: {
                     format: 'stylish'
                 },
-                src    : ['./lib/**/*.js']
-            },
-            watch  : {
+                src: ['./lib/**/*.js']
+            }
+        },
+
+        plato: {
+            ci: {
                 options: {
-                    format: 'stylish'
+                    eslintrc: './.eslintrc'
                 },
-                src    : ['./lib/**/*.js']
+                files: {
+                    'results/plato': ['lib/**/*.js']
+                }
+            }
+        },
+
+        mocha_istanbul: {
+            src:     'tests/**/*.js',
+            options: {
+                coverage:       true,
+                excludes:       ['node_modules/**', 'tests/**', 'results/**', 'app.js', 'lib/logger.js'],
+                root:           './lib',
+                coverageFolder: 'results/istanbul',
+                reporter:       'mochawesome',
+                reportFormats:  ['cobertura', 'lcovonly', 'html'],
+                quiet:          false
             }
         },
 
         watch: {
             scripts: {
                 files  : ['./lib/**/*.js', './tests/**/*.js'],
-                tasks  : ['eslint:watch', 'mochaTest'],
+                tasks  : ['eslint:dev', 'mochaTest'],
                 options: {
                     event: ['added', 'changed', 'deleted']
                 }
             }
         },
 
-        mocha_istanbul   : {
-            src    : "tests/**/*.js",
-            options: {
-                coverage       : true,
-                excludes       : ['node_modules/**', 'tests/**', 'results/**', 'main.js'],
-                istanbulOptions: ['--include-all-sources=true'],
-                root           : './lib',
-                coverageFolder : 'results',
-                reporter       : 'xunit-file',
-                reportFormats  : ['cobertura', 'lcovonly', 'html'],
-                quiet          : false
-            }
-        },
         convert          : {
             options : {
                 explicitArray: false

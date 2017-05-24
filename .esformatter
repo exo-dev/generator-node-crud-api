@@ -1,0 +1,22 @@
+{
+  "preset": "default",
+  "indent": {
+    "value": "    "
+  },
+  "plugins": [
+    "esformatter-quotes",
+    "esformatter-use-strict",
+    "esformatter-align"
+  ],
+  "quotes": {
+    "type": "single",
+    "avoidEscape": false
+  },
+  "align": {
+    "ObjectExpression":     1,
+    "VariableDeclaration":  1,
+    "AssignmentExpression": 1,
+    "TernaryExpression":    1,
+    "OrExpression":         1
+  }
+}

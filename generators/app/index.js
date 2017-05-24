@@ -1,8 +1,9 @@
 'use strict';
+
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var path = require('path');
+var chalk  = require('chalk');
+var yosay  = require('yosay');
+var path   = require('path');
 var mkdirp = require('mkdirp');
 
 module.exports = yeoman.generators.Base.extend({
@@ -16,34 +17,41 @@ module.exports = yeoman.generators.Base.extend({
 
         var prompts = [
             {
-                name    : 'projectName',
-                message : 'Project Name',
-                default : 'awesome-api',
+                name:     'projectName',
+                message:  'Project Name',
+                default:  'awesome-api',
                 validate: function(input) {
                     var regex = new RegExp(/^[a-z0-9/-]+$/);
                     if (!regex.test(input)) {
-                        return "The project name must contain only lowercase alphanumeric characters and -"
+                        return 'The project name must contain only lowercase alphanumeric characters and -'
                     }
                     return true;
                 }
             },
             {
-                type   : 'confirm',
-                name   : 'useModels',
+                type:    'confirm',
+                name:    'useModels',
                 message: 'Will you use models?',
                 default: 'Y'
             },
             {
-                type   : 'confirm',
-                name   : 'likeInstallDependencies',
+                type:    'confirm',
+                name:    'useDecorators',
+                message: 'Will you use decorators?',
+                default: 'Y'
+            },
+            {
+                type:    'confirm',
+                name:    'likeInstallDependencies',
                 message: 'Do you want me to install the npm dependencies?',
                 default: 'Y'
             }
         ];
 
         this.prompt(prompts, function(props) {
-            this.useModels = props.useModels;
-            this.projectName = props.projectName;
+            this.useModels     = props.useModels;
+            this.useDecorators = props.useDecorators;
+            this.projectName   = props.projectName;
             this.uppercaseName = props.projectName
                 .split('-')
                 .map(function(name) {
@@ -113,12 +121,16 @@ module.exports = yeoman.generators.Base.extend({
                 path.join(this.projectName, '.gitignore'));
             this.template('_mkdocs.yml',
                 path.join(this.projectName, 'mkdocs.yml'));
+            this.template('_index.js',
+                path.join(this.projectName, 'index.js'));
             this.template('_app.js',
                 path.join(this.projectName, 'app.js'));
             this.template('_Gruntfile.js',
                 path.join(this.projectName, 'Gruntfile.js'));
             this.template('_docker-compose.yml',
                 path.join(this.projectName, 'docker-compose.yml'));
+            this.template('_build-baucis.js',
+                path.join(this.projectName, 'build-baucis.js'));
             this.fs.copy(this.templatePath(path.join('.esformatter')),
                 this.destinationPath(path.join(this.projectName, '.esformatter')));
             this.fs.copy(this.templatePath(path.join('.eslintrc')),
@@ -127,8 +139,6 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath(path.join(this.projectName, '.tern-project')));
             this.fs.copy(this.templatePath(path.join('.dockerignore')),
                 this.destinationPath(path.join(this.projectName, '.dockerignore')));
-            this.fs.copy(this.templatePath(path.join('build-baucis.js')),
-                this.destinationPath(path.join(this.projectName, 'build-baucis.js')));
             this.fs.copy(this.templatePath(path.join('Dockerfile')),
                 this.destinationPath(path.join(this.projectName, 'Dockerfile')));
             this.fs.copy(this.templatePath(path.join('unit.sh')),
@@ -139,7 +149,7 @@ module.exports = yeoman.generators.Base.extend({
             if (this.likeInstallDependencies) {
                 process.chdir(this.projectName);
                 this.installDependencies({
-                    npm  : true,
+                    npm:   true,
                     bower: false
                 });
             } else {

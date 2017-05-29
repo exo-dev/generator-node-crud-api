@@ -38,6 +38,7 @@
     "chalk": "^1.0.0",
     "mkdirp": "^0.5.1",
     "yeoman-generator": "^0.19.0",
+    "esformatter-preset-exo": "git+https:git@github.com/exo-dev/esformatter-preset-exo.git",
     "yosay": "^1.0.2"
   },
   "devDependencies": {

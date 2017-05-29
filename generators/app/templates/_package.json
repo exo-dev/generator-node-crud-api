@@ -24,6 +24,7 @@
     "mochawesome": "^2.0.4",
     "proxyquire": "^1.7.3",
     "@exo-dev/eslint-config-exo-es6": "^1.0.0",
+    "esformatter-preset-exo": "git+https:git@github.com/exo-dev/esformatter-preset-exo.git",
     "should": "^9.0.0",
     "sinon": "^1.17.2",
     "xunit-file": "0.0.9"<% if (useModels){ %>,

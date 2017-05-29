@@ -1,6 +1,6 @@
 {
-  "name": "generator-node-crud-api",
-  "version": "1.0.6",
+  "name": "@exo-dev/generator-node-crud-api",
+  "version": "1.0.8",
   "description": "Creates an api with swagger documentation plus kong as a proxy",
   "license": "MIT",
   "main": "app/index.js",
@@ -17,11 +17,7 @@
       "url": "https://github.com/exo-dev/generator-node-crud-api/blob/master/LICENSE-MIT"
     }
   ],
-  "author": {
-    "name": "Agustin Croce",
-    "email": "agustinc@exo.com.ar",
-    "url": "https://github.com/AgustinCroce"
-  },
+  "author": "Agustin Croce <agustinc@exo.com.ar> (https://github.com/AgustinCroce)",
   "scripts": {
     "test": "mocha"
   },
@@ -38,10 +34,11 @@
     "chalk": "^1.0.0",
     "mkdirp": "^0.5.1",
     "yeoman-generator": "^0.19.0",
-    "esformatter-preset-exo": "git+https:git@github.com/exo-dev/esformatter-preset-exo.git",
+    "esformatter-preset-exo": "git+https://git@github.com/exo-dev/esformatter-preset-exo.git",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
     "mocha": "*"
-  }
+  },
+  "homepage": "https://github.com/exo-dev/generator-node-crud-api#readme"
 }

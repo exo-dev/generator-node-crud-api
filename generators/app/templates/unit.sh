@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Tests
-npm run-script jenkins
+npm run ci

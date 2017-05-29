@@ -1,0 +1,72 @@
+image: docker:git
+variables:
+  PIPELINE_IMAGE: $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID
+  BRANCH_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+  RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+  REPORTS_DIR: $CI_PROJECT_NAME/$CI_BUILD_REF_NAME/$CI_PIPELINE_ID
+  DOCKER_DRIVER: overlay
+  
+stages:
+    - build
+    - test
+    - release
+    
+build:
+    stage: build
+    services:
+        - docker:dind
+    script:
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+        - docker build -t $PIPELINE_IMAGE .
+        - docker push $PIPELINE_IMAGE
+    tags:
+        - docker
+        
+unit_test:
+    stage: test
+    services:
+        - docker:dind
+    script:
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+        - apk add --update wget
+        - docker run --name=$CI_PIPELINE_ID $PIPELINE_IMAGE ./unit.sh
+        - mkdir -p $REPORTS_DIR
+        - docker cp $CI_PIPELINE_ID:/usr/src/app/results/. ./$REPORTS_DIR/
+        - docker tag $PIPELINE_IMAGE $BRANCH_IMAGE
+        - docker push $BRANCH_IMAGE
+        - wget -O ./$REPORTS_DIR/index.html https://raw.githubusercontent.com/exo-dev/ci-reports/master/index.html
+    artifacts:
+        paths:
+            - ./$REPORTS_DIR
+    tags:
+        - docker
+        
+release:
+    stage: release
+    services:
+        - docker:dind
+    only:
+        - master
+    script:
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+        - docker pull $PIPELINE_IMAGE
+        - docker tag $PIPELINE_IMAGE $RELEASE_IMAGE
+        - docker push $RELEASE_IMAGE
+    tags:
+        - docker
+        
+publish_reports:
+    stage: release
+    after_script:
+        - rm id_rsa
+    script:
+        - apk add --update rsync openssh
+        - ls ./$REPORTS_DIR
+        - echo "${SSH_DEPLOY_KEY}" > id_rsa
+        - chmod 600 id_rsa
+        - rsync -rvzOR -e "ssh -i id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ./$REPORTS_DIR deploys@ci.dev.exoip.com.ar:/srv/reportes
+    environment:
+        name: Reports
+        url: https://ci.dev.exoip.com.ar/$CI_PROJECT_NAME/$CI_BUILD_REF_NAME/$CI_PIPELINE_ID
+    tags:
+        - docker

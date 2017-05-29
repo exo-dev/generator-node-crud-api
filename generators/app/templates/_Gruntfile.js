@@ -101,7 +101,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('test', [
-        'env:dev', 'eslint:jenkins', 'mocha_istanbul'
+        'env:dev', 'force:eslint:jenkins', 'mocha_istanbul'
     ]);
     <% if (useModels) { %>
     grunt.registerTask('build', ['baucis-swagger2', 'convert', 'merge-json']);

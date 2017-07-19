@@ -11,7 +11,7 @@ const swaggerTools   = require('swagger-tools');<% if (useModels) { %>
 const mongoose       = require('mongoose');
 
 function connectMongoose(settings) {
-    const mongoUrl = 'mongodb://' + settings.host + settings.port + '/' + settings.db;
+    const mongoUrl = 'mongodb://' + settings.host + ':' +settings.port + '/' + settings.db;
     mongoose.Promise = global.Promise;
     return mongoose.connect(mongoUrl);
 }<% } %>

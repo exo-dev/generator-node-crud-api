@@ -143,6 +143,8 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath(path.join(this.projectName, 'Dockerfile')));
             this.fs.copy(this.templatePath(path.join('unit.sh')),
                 this.destinationPath(path.join(this.projectName, 'unit.sh')));
+            this.fs.copy(this.templatePath(path.join('glimpse.config.json')),
+                this.destinationPath(path.join(this.projectName, 'glimpse.config.json')));
         },
 
         end: function() {
